@@ -1,0 +1,11 @@
+const fs = require('fs');
+let code = fs.readFileSync('src/components/SettingsModal.tsx', 'utf8');
+code = code.replace(`import { X`, `import { t } from '../i18n';\nimport { X`);
+code = code.replace(`>Configuration du Quota & Token API<`, `>{t('settings.title')}<`);
+code = code.replace(`>Quota Partagé (Sans Token)<`, `>{t('settings.shared')}<`);
+code = code.replace(`>Requêtes restantes pour l'ensemble du site. Se réinitialise chaque heure.<`, `>{t('settings.sharedDesc')}<`);
+code = code.replace(`>Quota Privé (Avec Token)<`, `>{t('settings.private')}<`);
+code = code.replace(`>Utilisez votre propre Personal Access Token (PAT) GitHub pour bénéficier de 5000 requêtes/heure. Votre token est stocké EXCLUSIVEMENT dans le localStorage de votre navigateur.<`, `>{t('settings.privateDesc')}<`);
+code = code.replace(`>Enregistrer le Token<`, `>{t('settings.save')}<`);
+code = code.replace(`>Supprimer le Token<`, `>{t('settings.remove')}<`);
+fs.writeFileSync('src/components/SettingsModal.tsx', code);

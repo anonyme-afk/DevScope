@@ -1,0 +1,17 @@
+const fs = require('fs');
+let code = fs.readFileSync('src/components/OverviewTab.tsx', 'utf8');
+code = code.replace(`import { RadarChart`, `import { t } from '../i18n';\nimport { RadarChart`);
+code = code.replace(`>Radar de Compétences<`, `>{t('overview.radar')}<`);
+code = code.replace(`>8 Piliers<`, `>{t('overview.pillars')}<`);
+code = code.replace(`>Points Forts Majeurs<`, `>{t('overview.strengths')}<`);
+code = code.replace(`>Opportunités & Axes d'Évolution<`, `>{t('overview.growth')}<`);
+code = code.replace(`>Stack Technique Maîtrisée<`, `>{t('overview.stack')}<`);
+code = code.replace(`>Extraite du code & READMEs<`, `>{t('overview.stackDesc')}<`);
+code = code.replace(`>Répartition des Langages<`, `>{t('overview.langDist')}<`);
+code = code.replace(`principaux<`, `{t('overview.top')}<`);
+code = code.replace(`>Explorer les {projectAnalyses.length} projets & READMEs digérés<`, `>{t('overview.explore').replace('projets & READMEs digérés', projectAnalyses.length + ' ' + t('overview.explore').replace('Explorer les ', ''))}<`);
+code = code.replace(`>Explorer les {projectAnalyses.length} {t('overview.explore').replace('projets & READMEs digérés', projectAnalyses.length + ' ' + t('overview.explore').replace('Explorer les ', ''))} & READMEs digérés<`, `>{t('overview.explore')} ({projectAnalyses.length})<`);
+code = code.replace(`>Timeline d'Activité Projets<`, `>{t('overview.timeline')}<`);
+code = code.replace(`>Volume heuristique de commits<`, `>{t('overview.timelineDesc')}<`);
+code = code.replace(`>Heatmap Technologique<`, `>{t('overview.heatmap')}<`);
+fs.writeFileSync('src/components/OverviewTab.tsx', code);

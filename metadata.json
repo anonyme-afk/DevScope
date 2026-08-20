@@ -1,0 +1,6 @@
+{
+  "name": "DevScope AI - Analyseur de Profil GitHub",
+  "description": "Analyseur intelligent de profils de développeurs GitHub avec extraction et synthèse algorithmique des projets, READMEs, architectures et compétences clés par IA.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

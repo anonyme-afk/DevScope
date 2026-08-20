@@ -1,0 +1,18 @@
+const fs = require('fs');
+let code = fs.readFileSync('src/components/MethodologyModal.tsx', 'utf8');
+code = code.replace(`import { X`, `import { t } from '../i18n';\nimport { X`);
+code = code.replace(`>Comment fonctionne DevScope ?<`, `>{t('methodology.title')}<`);
+code = code.replace(`>DevScope n'utilise pas de LLM (IA Générative) pour évaluer un candidat. Les scores, les archétypes et l'analyse d'architecture sont générés par un <strong>système heuristique pur (règles algorithmiques strictes)</strong>, garantissant l'objectivité absolue et la reproductibilité des résultats sans biais artificiel ni hallucination.<`, ` dangerouslySetInnerHTML={{ __html: t('methodology.desc').replace('système heuristique pur (règles algorithmiques strictes)', '<strong>système heuristique pur (règles algorithmiques strictes)</strong>') }}></p>`);
+code = code.replace(/<p className="text-zinc-300 text-sm leading-relaxed mb-6"> dangerouslySetInnerHTML.*/g, `<p className="text-zinc-300 text-sm leading-relaxed mb-6" dangerouslySetInnerHTML={{ __html: t('methodology.desc').replace('système heuristique pur (règles algorithmiques strictes)', '<strong>système heuristique pur (règles algorithmiques strictes)</strong>') }}></p>`);
+code = code.replace(`<strong>Récupération des dépôts :</strong>`, `<strong>{t('methodology.fetch')} :</strong>`);
+code = code.replace(`Extraction des 100 dépôts publics les plus récemment mis à jour. Les forks passifs sont ignorés.`, `{t('methodology.fetchDesc')}`);
+code = code.replace(`<strong>Scan profond de l'arborescence :</strong>`, `<strong>{t('methodology.deepScan')} :</strong>`);
+code = code.replace(`Interrogation de l'arbre Git (jusqu'à 5000 fichiers) pour détecter la CI/CD (.github/workflows), l'IaC (terraform/), les Tests (__tests__) et les Dockerfiles.`, `{t('methodology.deepScanDesc')}`);
+code = code.replace(`<strong>Analyse sémantique :</strong>`, `<strong>{t('methodology.semantic')} :</strong>`);
+code = code.replace(`Extraction des "Topics" et descriptions pour mapper le projet dans l'une des 5 familles d'ingénierie (Frontend, Backend, DevOps, IA/Data, Systèmes).`, `{t('methodology.semanticDesc')}`);
+code = code.replace(`<strong>Scoring Radar :</strong>`, `<strong>{t('methodology.radar')} :</strong>`);
+code = code.replace(`Attribution de points strictement basée sur la présence de technologies avancées (ex: k8s -> DevOps++, vitest -> Frontend++).`, `{t('methodology.radarDesc')}`);
+code = code.replace(`Limitations Connues<`, `{t('methodology.limits')}<`);
+code = code.replace(`Le code privé n'est pas visible. Un développeur travaillant principalement en entreprise peut être sous-évalué.<`, `{t('methodology.limit1')}<`);
+code = code.replace(`Les dépôts géants (type Linux kernel) peuvent dépasser la limite d'arbre de l'API, masquant certains fichiers de test très profonds.<`, `{t('methodology.limit2')}<`);
+fs.writeFileSync('src/components/MethodologyModal.tsx', code);

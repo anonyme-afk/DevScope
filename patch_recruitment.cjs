@@ -1,0 +1,13 @@
+const fs = require('fs');
+let code = fs.readFileSync('src/components/AiAssistantTab.tsx', 'utf8');
+code = code.replace(`import { Copy`, `import { t } from '../i18n';\nimport { Copy`);
+code = code.replace(`>Synthèse Recrutement<`, `>{t('recruitment.title')}<`);
+code = code.replace(`>Résumé Exécutif<`, `>{t('recruitment.execSummary')}<`);
+code = code.replace(`>Questions d'Entretien Techniques<`, `>{t('recruitment.techQuestions')}<`);
+code = code.replace(`>Sujets d'Architecture<`, `>{t('recruitment.archTopics')}<`);
+code = code.replace(`>Soft Skills Détectées<`, `>{t('recruitment.softSkills')}<`);
+code = code.replace(`>Message d'Approche (Draft)<`, `>{t('recruitment.outreach')}<`);
+code = code.replace(`>Copier<`, `>{t('recruitment.copy')}<`);
+code = code.replace(`>Copié !<`, `>{t('recruitment.copied')}<`);
+code = code.replace(`>Lié à<`, `>{t('recruitment.relatedTo')}<`);
+fs.writeFileSync('src/components/AiAssistantTab.tsx', code);
