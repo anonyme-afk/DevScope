@@ -1,6 +1,6 @@
 # DevScope
 
-[Link to Live Site](https://ais-pre-2zvbykwimp26l4djlpd5jh-114166625783.europe-west2.run.app) <!-- Replace with your final production domain -->
+[Link to Site](https://devscope-anonyme-afks-projects.vercel.app/) <!-- Replace with your final production domain -->
 
 DevScope is an objective, deterministic GitHub profile analyzer. It evaluates software engineering profiles using strict heuristic algorithms rather than generative AI, ensuring reproducible and unbiased scoring based on actual code artifacts.
 
